@@ -1,4 +1,7 @@
 <br>
+<table id="outer-container" cellspacing="0" cellpadding="0">
+<tr>
+<td>
 <div id="container" onmousemove="hoverTrigger()" onmouseleave="mouseLeaveContainer()" onclick="event.stopPropagation()">
     <video id="video" onclick="clickVideo()" width="100%" height="100%"
            src="https://mediastore.auckland.ac.nz/2016/1163/PHYSICS107L01C/366694/201605201000.LT347631.REV1.mp4"></video>
@@ -19,7 +22,7 @@
                 <tbody id="top-level">
                 <tr onclick="toggleThumbnails()" class="clickable">
                     <td colspan="2">
-                        Thumbnails <sup>BETA</sup>
+                        Thumbnails <sup class="beta-tag">BETA</sup>
                         <div id="thumbnails-slider-bg">
                             <div id="thumbnails-slider-knob"></div>
                         </div>
@@ -80,6 +83,7 @@
             <div id="hover-progress" class="progress-bar"></div>
             <div id="load-progress" class="progress-bar"></div>
             <div id="seek-progress" class="progress-bar"></div>
+            <div id="bookmarks-markers-container" class="progress-bar"></div>
             <div id="seek-handle" class="progress-bar"></div>
         </div>
         <table id="options-bar"
@@ -109,6 +113,14 @@
                     onclick="toggleHotkeysReference();hideOptionsMenu();event.stopPropagation()">
                     <i class="fa fa-keyboard-o"></i>
                 </td>
+                <td id="create-bookmark-button" class="control-button clickable"
+                    onclick="createBookmark();hideOptionsMenu();event.stopPropagation()">
+                    <i class="fa fa-bookmark"></i>
+                </td>
+				<td id="download-button" class="control-button clickable"
+					onclick="downloadVideo();hideOptionsMenu();event.stopPropagation()">
+					<i class="fa fa-download"></i>
+				</td>
                 <td id="video-options-button" class="control-button clickable"
                     onclick="toggleOptionsMenu();hideHotkeysReference();event.stopPropagation()">
                     <i class="fa fa-cog"></i>
@@ -144,6 +156,9 @@
                     </div>
                     <div id="hotkey-popup-play" class="hotkey-popup-icon">
                         <i class="fa fa-play"></i>
+                    </div>
+                    <div id="hotkey-popup-bookmark" class="hotkey-popup-icon">
+                        <i class="fa fa-bookmark"></i>
                     </div>
                     <br>
                     <div id="hotkey-popup-text"></div>
@@ -214,6 +229,14 @@
                         </td>
                         <td>Skip Forward 10 Seconds</td>
                     </tr>
+                    <tr>
+                        <td>
+                            <div class="keyboard-key">
+                                B
+                            </div>
+                        </td>
+                        <td>Create Bookmark</td>
+                    </tr>
                 </table>
             </div>
         </div>
@@ -227,3 +250,55 @@
         </div>
     </div>
 </div>
+</td>
+<td>
+<div id="sidebar-container">
+    <div id="tab-group">
+        <div id="bookmarks-tab-header" class="tab selected" onclick="selectTab('bookmarks')">Bookmarks
+        </div><div id="playlist-tab-header" class="tab" onclick="selectTab('playlist')">Playlist <sup class="beta-tag">BETA</sup>
+        </div>
+    </div>
+    <div id="bookmarks-container" class="tab-content-container">
+        <div id="bookmarks-heading">
+            <table>
+                <tr>
+                    <td>
+                        <div id="bookmarks-subtitle">Click <i class="fa fa-bookmark"></i> or press <span style="border: 1px solid grey; border-radius: 2px; padding: 1px 2px;">B</span> to create a Bookmark</div>
+                    </td>
+                    <!-- <td id="playlist-progress">
+                        <span id="current-video"></span>/<span id="total-videos"></span>
+                    </td> -->
+                </tr>
+            </table>
+        </div>
+        <div id="bookmarks-table-container">
+            <table id="bookmarks-table" cellspacing="0" cellpadding="0"></table>
+        </div>
+    </div>
+    <div id="playlist-container" class="tab-content-container">
+        <div id="playlist-heading">
+            <table>
+                <tr>
+                    <td>
+                        <div id="course-name"></div>
+                        <div id="semester"></div>
+                    </td>
+                    <td id="playlist-progress">
+                        <span id="current-video"></span>/<span id="total-videos"></span>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div id="playlist-list">
+
+        </div>
+        <div id="playlist-disclaimer">
+            <div>
+                This feature is in <b>BETA</b>. Correctness and completeness of listing is <b>not guaranteed</b>. Please report any issues <a href="https://github.com/ChineseElectricPanda/canvas-video-enhancer/issues">here</a>.
+            </div>
+        </div>
+    </div>
+</div>
+</td>
+</tr>
+</table>
